@@ -51,7 +51,12 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<optional>true</optional>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok-mapstruct-binding</artifactId>
+			<version>0.2.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -67,29 +72,28 @@
 
 	<build>
 		<plugins>
+			<!-- Maven Compiler Plugin to Enable Annotation Processing -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.1</version>
 				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
 					<annotationProcessorPaths>
 						<path>
 							<groupId>org.projectlombok</groupId>
 							<artifactId>lombok</artifactId>
+							<version>1.18.30</version>
 						</path>
 					</annotationProcessorPaths>
 				</configuration>
 			</plugin>
+
+			<!-- Spring Boot Maven Plugin -->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<excludes>
-						<exclude>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok</artifactId>
-						</exclude>
-					</excludes>
-				</configuration>
 			</plugin>
 		</plugins>
 	</build>
